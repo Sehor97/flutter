@@ -35,6 +35,7 @@ class _DetailState extends State < Detail > {
           child: new Text("Eliminado", style: new TextStyle(color: Colors.black), ),
           color: Colors.red,
           onPressed: () {
+            deleteData();
             Navigator.of(context).push(
               new MaterialPageRoute(
                 builder: (BuildContext context) => new Consulta(),

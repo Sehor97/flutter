@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
 import 'package:prueba_sesnsor_huella/pages/registrarHuellaPage.dart';
 import 'package:prueba_sesnsor_huella/pages/registresePage.dart';
 import 'package:prueba_sesnsor_huella/main.dart';
 import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
 import 'package:http/http.dart'as http;
+
+import 'abrirPuerta.dart';
 //import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
 //import 'package:http/http.dart' as http;
 //import 'package:flutter/src/material/user_accounts_drawer_header.dart';
 
 
-void main() => runApp(Menu());
+void main() => runApp(Menu('',''));
 
 class Menu extends StatelessWidget{
+  String name;
+  String user;
+  Menu(this.name,this.user);
+
   Widget build(BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -25,7 +32,7 @@ class Menu extends StatelessWidget{
     
      Scaffold(
       appBar: AppBar(title: Text("Menú de Usuario"),),
-      drawer: MenuLateral(),
+      drawer: MenuLateral(name,user),
       body:  Form(
         child: Container(
           decoration: new BoxDecoration(
@@ -53,12 +60,12 @@ class Menu extends StatelessWidget{
       ),
     ),
     routes: <String, WidgetBuilder>{
-        '/menuPage': (BuildContext context) => new Menu(),
+        '/menuPage': (BuildContext context) => new Menu(name,user),
         '/registresePage': (BuildContext context) => new AddData(),
         '/registrarHuellaPage': (BuildContext context) => new AddDataH(),
         '/ConsultarPage': (BuildContext context) => new Consulta(),
         '/LoginPage': (BuildContext context) => new LoginPage(),
-        
+        '/abrirPuerta':(BuildContext context) => new MyApp(),
       },
     );
   }
@@ -66,14 +73,17 @@ class Menu extends StatelessWidget{
 
 
 class MenuLateral extends StatelessWidget {
+  String nam ;
+  String usr;
+  MenuLateral(this.nam,this.usr);
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: <Widget>[
           new UserAccountsDrawerHeader(
-            accountName: Text('${['nombre']}'), 
-            accountEmail: Text('${['user']}'),
+            accountName: Text(nam), 
+            accountEmail: Text(usr),
             decoration: BoxDecoration(
               image: new DecorationImage(
                 image:new AssetImage("assets/images/lo.png"),
@@ -94,7 +104,6 @@ class MenuLateral extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/ConsultarPage');
                 
               },
-              //onTap:() => Navigator.pushReplacementNamed(context, '/consultarPage'),
             ),
             new ListTile(
               title:Text("Registrar Invitado"),
@@ -102,7 +111,14 @@ class MenuLateral extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/registrarHuellaPage');
                 
               },
-              //onTap:() => Navigator.pushReplacementNamed(context, '/consultarPage'),
+            ),
+
+            new ListTile(
+              title:Text("Abrir puerta"),
+              onTap: (){
+                Navigator.pushReplacementNamed(context, '/abrirPuerta');
+                
+              },
             ),
             new Column(
               children: <Widget>[
