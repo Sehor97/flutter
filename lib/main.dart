@@ -1,6 +1,4 @@
 import 'dart:convert';
-//import 'dart:js';
-import 'package:shared_preferences/shared_preferences.dart';
 import "package:flutter/material.dart";
 import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
 import 'package:prueba_sesnsor_huella/pages/menuPage.dart';
@@ -46,7 +44,7 @@ class _LoginPageState extends State < LoginPage > {
   String mensaje = "";
 
   Future < List > login() async {
-    final response = await http.post("http://192.168.1.76/proyecto/login.php",
+    final response = await http.post("http://192.168.0.7/proyecto/login.php",
       body: {
         "user": controllerUser.text,
         "pass": controllerPass.text,
