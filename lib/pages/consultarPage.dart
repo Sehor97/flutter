@@ -17,7 +17,7 @@ class Consulta extends StatefulWidget {
 class _ConsultaState extends State < Consulta > {
 
   Future < List > getData() async {
-    final response = await http.get("http://192.168.0.7/proyecto/getdata.php");
+    final response = await http.get("http://192.168.1.76/proyecto/getdata.php");
     return json.decode(response.body);
   }
 
@@ -27,6 +27,7 @@ class _ConsultaState extends State < Consulta > {
     return Scaffold(
       appBar: AppBar(
         title: new Text("Listado de usuarios"),
+        
       ),
 
 

@@ -3,14 +3,8 @@ import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
 import 'package:prueba_sesnsor_huella/pages/registrarHuellaPage.dart';
 import 'package:prueba_sesnsor_huella/pages/registresePage.dart';
 import 'package:prueba_sesnsor_huella/main.dart';
-import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
-import 'package:http/http.dart'
-as http;
-
 import 'abrirPuerta.dart';
-//import 'package:prueba_sesnsor_huella/pages/consultarPage.dart';
-//import 'package:http/http.dart' as http;
-//import 'package:flutter/src/material/user_accounts_drawer_header.dart';
+
 
 
 void main() => runApp(Menu('', ''));
